@@ -3,9 +3,7 @@ Boilerplate template for PhoneGap applications
 
 # Installation
 
-• Duplicate the boilerplate
-
-Clone the repos
+• Clone this repository
 
 • Install the tools
 
