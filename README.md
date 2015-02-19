@@ -7,7 +7,7 @@ Boilerplate template for PhoneGap applications
 
 • Install the tools
 
-run: 'npm install' in terminal within root of project folder and if not found then install Node.js and npm
+run: 'npm' in terminal within root of project folder and if not found then install Node.js and npm
 
 • Install the required npm dependencies
 
