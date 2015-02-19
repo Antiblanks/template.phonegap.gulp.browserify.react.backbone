@@ -1,0 +1,53 @@
+a {
+	.font-default-bold;
+	color: @color-brand;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&.disabled {
+		.opacity-30;
+		cursor: default !important;
+	}
+}
+
+.button {
+	.font-medium-bold;
+	display: block;
+	text-decoration: none;
+	color: @color-white;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.lozenge-button {
+	.button;
+	padding: 0.5em 1em;
+	background-color: @color-brand;
+	border-bottom: 3px solid @color-brand-dark;
+	text-align: center;
+	.border-radius-6;
+
+	&.inverse {
+		background-color: @color-white;
+	}
+
+	&.login-facebook-button {
+		background-color: @color-facebook-brand;
+		border-bottom: 3px solid @color-facebook-brand-dark;
+	}
+
+	&.green {
+		background-color: @color-green;
+		border-bottom: 3px solid @color-green-dark;
+	}
+
+	&.grey-light {
+		background-color: @color-grey-light;
+		border-bottom: 3px solid @color-grey-medium;
+	}
+}

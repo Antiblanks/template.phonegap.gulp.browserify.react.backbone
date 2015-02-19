@@ -1,0 +1,75 @@
+{
+  "name": "antiblanks-template-gulp-browserify-react-backbone-phonegapapp",
+  "version": "0.0.1",
+  "description": "Boilerplate for Phonegap application development using Gulp, Browserify, React and Backbone",
+  "repository": {
+    "type": "svn",
+    "url": "...TODO..."
+  },
+  "keywords": [
+    "phonegap",
+    "react",
+    "browserify",
+    "backbone"
+  ],
+  "author": "Daniel Ivanovic",
+  "license": "Apache",
+  "dependencies": {
+    "cordova": "~4.1.2",
+    "underscore": "~1.1.2",
+    "jquery": "~2.1.0",
+    "react": "~0.10.0",
+    "backbone": "~1.1.2",
+    "backbone.controller": "~0.3.1"
+  },
+  "devDependencies": {
+    "browserify": "~3.36.0",
+    "browserify-shim": "~3.4.1",
+    "envify": "~1.2.1",
+    "gulp": "~3.6.0",
+    "gulp-changed": "~0.3.0",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-less": "~1.2.3",
+    "gulp-notify": "~1.2.4",
+    "gulp-recess": "~0.3.1",
+    "gulp-util": "~2.2.14",
+    "jstify": "^0.7.0",
+    "reactify": "~0.13.1",
+    "vinyl-source-stream": "~0.1.1",
+    "wrench": "~1.5.8",
+    "hammerjs": "~2.0.4"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ],
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    },
+    "jquery-easing": {
+      "path": "js/libs/jquery/jquery.easing.js",
+      "exports": null,
+      "depends": [
+        "jquery:jQuery", "jquery:$"
+      ]
+    },
+    "jquery.simplemodal": {
+      "path": "js/libs/jquery/jquery.simplemodal.js",
+      "exports": null,
+      "depends": [
+        "jquery:jQuery", "jquery:$"
+      ]
+    }
+  }
+}
