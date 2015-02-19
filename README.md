@@ -11,13 +11,13 @@ run: 'npm install' in terminal within root of project folder and if not found th
 
 • Install the required npm dependencies
 
-run: sudo npm install -g gulp@3.6.2
-run: sudo npm install -g cordova
+run: sudo npm install -g gulp@3.6.2<br/>
+run: sudo npm install -g cordova<br/>
 run: sudo npm install -g phonegap
 
 • Install the iOS simulator
 
-run: sudo npm install ios-sim -g
+run: sudo npm install ios-sim -g<br/>
 run: sudo npm install ios-deploy -g
 
 • Install local Node dependencies
@@ -32,8 +32,8 @@ Note: If you have troubles doing so, it may be because Git did not create the pl
 
 • Run the project on iOS simulator
 
-run: gulp
-run: cordova build ios
+run: gulp<br/>
+run: cordova build ios<br/>
 run: cordova emulate ios
 
 Note: If you experience issues, make sure you enable developer mode on your machine. Run: DevToolsSecurity -enable Note: If you cannot get the emulator to run open the iOS application /platforms/ios/[project-name] with XCode and then build/emulate from within XCode
