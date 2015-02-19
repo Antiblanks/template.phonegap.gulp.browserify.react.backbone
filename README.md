@@ -26,7 +26,7 @@ run: npm install
 
 • Add the iOS and Android platforms to Cordova
 
-run: cordova platform add ios
+run: cordova platform add ios<br/>
 run: cordova platform add android
 
 Note: If you have troubles doing so, it may be because Git did not create the platforms, .cordova or plugins folder. You should also run gulp at least once or create the phonegap www folder manually.
