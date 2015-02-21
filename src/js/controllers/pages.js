@@ -6,7 +6,7 @@
 var $                       = require("jquery");
 var _                       = require("underscore");
 var Backbone                = require("backbone");
-Backbone.$                  = $;
+Backbone.$                  = $; 
 var React                   = require("react");
 
 // Controller

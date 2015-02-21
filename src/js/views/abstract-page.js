@@ -60,7 +60,7 @@ var AbstractPageView = Backbone.View.extend({
         var self = this;
         $(document).ready(function () {
             DebugUtil.log("AbstractPageView: render();", self.$el.find("#header").length, self.$el.find("#footer").length);
-            var uniqueId = Math.floor(Math.round()*1000)+1000;
+            var uniqueId = Math.floor(Math.random()*1000)+1000;
 
             // Render header
             $("#header").html("");
@@ -68,10 +68,12 @@ var AbstractPageView = Backbone.View.extend({
             if (self.$el.find(".page-content").attr("data-show-header") == "true") {
                 var headerDiv = $("<div id='header-content-"+uniqueId+"'></div>");
                 $("#header").append(headerDiv);
-                self.headerModel = new HeaderModel();
+                self.headerModel = new HeaderModel({
+                    "id": uniqueId
+                });
                 self.headerView = new HeaderView({
                     el: $("#header").find("#header-content-"+uniqueId),
-                    headerModel: self.headerModel
+                    model: self.headerModel
                 });
                 self.headerView.render();
                 $("#header").show();
@@ -88,10 +90,12 @@ var AbstractPageView = Backbone.View.extend({
             if (self.$el.find(".page-content").attr("data-show-footer") == "true") {
                 var footerDiv = $("<div id='footer-content-"+uniqueId+"'></div>");
                 $("#footer").append(footerDiv);
-                self.footerModel = new FooterModel();
+                self.footerModel = new FooterModel({
+                    "id": uniqueId
+                });
                 self.footerView = new FooterView({
                     el: $("#footer").find("#footer-content-"+uniqueId),
-                    footerModel: self.footerModel
+                    model: self.footerModel
                 });
                 self.footerView.render();
                 $("#footer").show();   

@@ -12,8 +12,8 @@ var React                   = require("react");
 // Utils
 var DebugUtil               = require("utils/debug").Util;
 
-// Templates
-var headerTemplate 	       = require("templates/header.tpl");
+// React components
+var ReactHeaderComponent    = require("views/header-component").Component;
 
 /*************************************
  * Classes
@@ -25,13 +25,18 @@ var HeaderView = Backbone.View.extend({
 	initialize: function (options) {
         DebugUtil.log("HeaderView", "initialized");
         this.$el = options.el;
+        this.model = options.model;
     },
 
     render: function () {
-        DebugUtil.log("HeaderView", "render", this.$el, headerTemplate({}));
+        DebugUtil.log("HeaderView", "render", this.$el); 
 
         var self = this;
-        this.$el.html(headerTemplate({}));
+        
+        React.renderComponent(new ReactHeaderComponent({
+            model: self.model,
+            onHeaderComponentMounted: this.onHeaderComponentMounted.bind(this)
+        }), this.$el.get(0));
 
         $(document).ready(function() {
             // @todo: Complete logic here...
@@ -44,6 +49,11 @@ var HeaderView = Backbone.View.extend({
 
     hideOpenHeaderMenuButton: function() {
     	this.$el.find("a.hamburger-menu-button").hide();
+    },
+
+    onHeaderComponentMounted: function() {
+        DebugUtil.log("HeaderView", "onHeaderComponentMounted();");
+        // @todo: Add logic here to process upon component mounted
     }
 });
 
