@@ -36,15 +36,22 @@ var AppState = Backbone.Model.extend({
 		this.loadedLoggedInUserContactByNameCollectionPage = 0;
 		this.isRunningInCordova = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 		this.routeHistory = [];
+		this.isDeviceReady = false;
 
 		if (this.isRunningInCordova) {
 			// Load the users friends
 	        document.addEventListener("deviceready", function () {
 	            self.loadLoggedInUserContactCollection();
+	            self.isDeviceReady = true;
 	        }, false);
 		} else {
-			self.loadLoggedInUserContactCollection();
+			this.loadLoggedInUserContactCollection();
+			this.isDeviceReady = true;
 		}
+    },
+
+    isAppStateReady: function() {
+    	return this.isDeviceReady;
     },
 
     // Routing

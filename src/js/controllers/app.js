@@ -59,31 +59,42 @@ var AppController = Backbone.Controller.extend({
 
 		DebugUtil.log("AppController", "onBeforeRoute", page);
 
-		// Check if connection is hot, if not bounce to not connected page
-		if (!ConnectionUtil.isDeviceConnected() && page != "not-connected") {
-			var onConnectPath = window.location.hash;
-			if (!onConnectPath || onConnectPath.length == 0)
-				onConnectPath = "#/";
-			if (onConnectPath.indexOf("/") != 0)
-				onConnectPath = "/"+onConnectPath;
-			window.location = "/#/not-connected?onConnectPath="+encodeURIComponent(onConnectPath);
-			return false;
-		}
-		
-		// Check if user is logged in, if not bounce to login page
-		if (ConnectionUtil.isDeviceConnected() && !this.isUserLoggedIn() && page != "login") {
-			// @todo: Handle non-accessible redirects here...
-			/*if (page == "example/:exampleId") {
-				if (arguments[1]) {
-					var redirectPath = 
-						page.replace(":exampleId", arguments[1]);
-					window.location = "/#/login?redirectPath="+redirectPath;
-				}
+		function canAccessRoute() {
+			// Check if connection is hot, if not bounce to not connected page
+			if (!ConnectionUtil.isDeviceConnected() && page != "not-connected") {
+				var onConnectPath = window.location.hash;
+				if (!onConnectPath || onConnectPath.length == 0)
+					onConnectPath = "#/";
+				if (onConnectPath.indexOf("#/") != 0)
+					onConnectPath = "#/"+onConnectPath;
+				window.location = "#/not-connected?onConnectPath="+encodeURIComponent(onConnectPath);
 				return false;
-			}*/
-			window.location = "/#/login";
-			return false;
-		}
+			}
+			
+			// Check if user is logged in, if not bounce to login page
+			if (ConnectionUtil.isDeviceConnected() && !self.isUserLoggedIn() && page != "login") {
+				// @todo: Handle non-accesible redirects here i.e;
+				// @note: these would be deep links into your app that require login before redirecting
+				/*if (page == "some-path/:withSomeParam1/:withSomeParam2") {
+					if (arguments[1] && arguments[2]) {
+						var redirectPath = 
+							page.replace(":withSomeParam1", arguments[1]).replace(":withSomeParam2", arguments[2]);
+						window.location = "#/login?redirectPath="+redirectPath;
+					}
+					return false;
+				}*/
+				window.location = "#/login";
+				return false;
+			}
+
+			self.pagesManager.updatePageHistoryState();
+			self.trigger(AppEvent.ON_BEFORE_ROUTE, {
+				"params": params,
+				"page" : page
+			});
+
+			return true;
+		};
 
 		// App ready
 		if (this.checkReadyTimer)
@@ -96,12 +107,10 @@ var AppController = Backbone.Controller.extend({
 			DebugUtil.log("AppController", "self.router.isAppReady()", self.router.isAppReady());
 			if (self.router.isAppReady()) {
 				window.clearInterval(self.checkReadyTimer);
-				self.pagesManager.updatePageHistoryState();
-				self.trigger(AppEvent.ON_BEFORE_ROUTE, {
-					"params": params,
-					"page" : page
-				});
-				deferred.resolve();
+				if(canAccessRoute())
+					deferred.resolve();
+				else 
+					deferred.reject();
 			}
 			deferredCount++;
 		}, 100);

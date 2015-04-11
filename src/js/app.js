@@ -197,8 +197,8 @@ var Application = Backbone.Router.extend({
                 isReadyCount++;
             controllersTotal++;
         }
-        DebugUtil.log("Application", "isAppReady", isReadyCount, controllersTotal);
-        return isReadyCount >= controllersTotal;
+        DebugUtil.log("Application", "isAppReady", isReadyCount, controllersTotal, AppState.isAppStateReady());
+        return (isReadyCount >= controllersTotal && AppState.isAppStateReady());
     },
 
     // Navigation

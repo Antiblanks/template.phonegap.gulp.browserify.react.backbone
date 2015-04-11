@@ -51,7 +51,7 @@ var MenuController = AppController.extend({
 					return false;
     			}
     			self.trigger(LoginEvent.ON_LOGOUT_SUCCESS, {});
-    			window.location = "/#/login";
+    			window.location = "#/login";
     			return true;
     		});
 		});

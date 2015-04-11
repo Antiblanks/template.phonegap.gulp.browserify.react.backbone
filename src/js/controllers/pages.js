@@ -38,7 +38,7 @@ var PagesController = AppController.extend({
 		DebugUtil.log("PagesController", "notConnected", this.pagesManager);
 
 		var self = this;
-		var reconnectPath = "/#/";
+		var reconnectPath = "#/";
         var locationArgs = UrlUtil.getArgsFromLocation();
         if (locationArgs && locationArgs["onConnectPath"])
             reconnectPath = decodeURIComponent(locationArgs["onConnectPath"]);

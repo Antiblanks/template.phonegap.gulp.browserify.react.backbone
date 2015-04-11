@@ -53,7 +53,7 @@ var LoginController = AppController.extend({
         var redirectPath = urlArgs["redirectPath"];
         if (!redirectPath)
             redirectPath = "";
-        redirectPath = "/#/"+redirectPath;
+        redirectPath = "#/"+redirectPath;
 
         this.listenTo(loginPage, loginPage.ON_LOGIN_FACEBOOK_BUTTON_CLICK, function() {
             // Handle dummy login user 1
